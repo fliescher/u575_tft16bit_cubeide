@@ -24,15 +24,15 @@ static bool _cp437    = false;
 
 static void ST7789V_writeRegister16(uint8_t r, uint16_t d) {
 	ST7789V_SEND_COMMAND(r);
-	ST7789V_SEND_DATA(d >> 8);
+	//ST7789V_SEND_DATA(d >> 8);
 	ST7789V_SEND_DATA(d);
 }
 
 static void ST7789V_writeRegister32(uint8_t r, uint32_t d) {
 	ST7789V_SEND_COMMAND(r);
-	ST7789V_SEND_DATA(d >> 24);
+	//ST7789V_SEND_DATA(d >> 24);
 	ST7789V_SEND_DATA(d >> 16);
-	ST7789V_SEND_DATA((d >> 8));
+	//ST7789V_SEND_DATA((d >> 8));
 	ST7789V_SEND_DATA(d);
 }
 

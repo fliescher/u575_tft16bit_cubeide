@@ -24,8 +24,8 @@ extern "C" {
 
 #define ST7789V_SRAM_BANK   1
 #define ST7789V_Ax          18
-#define ST7789V_SEND_COMMAND(command)   FMC_LCD_16BIT_SEND_COMMAND(ST7789V_SRAM_BANK, command)              //maybe this needs to be changed to 8bit as ST7789V always reads commands on [D0:D7]
-#define ST7789V_SEND_DATA(data)         FMC_LCD_16BIT_SEND_DATA(ST7789V_SRAM_BANK, ST7789V_Ax, data)        
+#define ST7789V_SEND_COMMAND(command)   FMC_LCD_8BIT_SEND_COMMAND(ST7789V_SRAM_BANK, command)              //maybe this needs to be changed to 8bit as ST7789V always reads commands on [D0:D7]
+#define ST7789V_SEND_DATA(data)         FMC_LCD_16BIT_SEND_DATA(ST7789V_SRAM_BANK, ST7789V_Ax, data)
 
   /** FMC GPIO Configuration
   PD14  ------> FMC_D0
