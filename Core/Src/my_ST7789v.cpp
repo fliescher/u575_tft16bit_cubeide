@@ -196,11 +196,12 @@ void ST7789V_fill(uint16_t color) {
 	{
 		ST7789V_setCursorPosition(0, 0, ST7789V_HEIGHT -1, ST7789V_WIDTH -1);
 	}
-	
+
 	while (n) {
 	   n--;
-       ST7789V_SEND_DATA(color>>8);
-	   ST7789V_SEND_DATA(color&0xff);
+       //ST7789V_SEND_DATA(color>>8);
+	   //ST7789V_SEND_DATA(color&0xff);
+	   ST7789V_SEND_DATA(color);
 	}
 }
 

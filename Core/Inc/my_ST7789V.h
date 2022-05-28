@@ -58,6 +58,7 @@ static void ST7789V_SEND_DATA_BUFFERED(uint16_t *buff, size_t buff_size) {
   PE8   ------> FMC_D5
   PE9   ------> FMC_D6
   PE10  ------> FMC_D7
+
   PE11  ------> FMC_D8
   PE12  ------> FMC_D9
   PE13  ------> FMC_D10
@@ -66,6 +67,7 @@ static void ST7789V_SEND_DATA_BUFFERED(uint16_t *buff, size_t buff_size) {
   PD8   ------> FMC_D13
   PD9   ------> FMC_D14
   PD10  ------> FMC_D15
+
   PD4   ------> FMC_NOE/RD
   PD5   ------> FMC_NWE/WR
   PD13  ------> FMC_A18/RS

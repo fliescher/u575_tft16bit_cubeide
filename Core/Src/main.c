@@ -392,11 +392,13 @@ int main(void)
   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
   HAL_Delay(1000);
   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
+
 ////////////////////////////////////////////////////////////////////////////////////////
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int round_num = 0;
   while (1)
   {
     /* USER CODE END WHILE */
@@ -407,8 +409,46 @@ int main(void)
 	  HAL_Delay(500);
 	  HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, 0);
 
+	  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
 
-	  ST7789V_fill(0xFF);
+	  if(round_num == 0)
+	  {
+		  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
+		  {
+			  ST7789V_SEND_DATA(COLOR_RED);
+		  }
+		  round_num++;
+	  }
+
+	  else if(round_num == 1)
+	  {
+	  	  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
+	  	  {
+	  		  ST7789V_SEND_DATA(COLOR_GREEN);
+	  	  }
+	  	  round_num++;
+	  }
+
+	  else if(round_num == 2)
+	  {
+	  	  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
+	  	  {
+	  		  ST7789V_SEND_DATA(COLOR_BLUE);
+	  	  }
+	  	  round_num++;
+	  }
+
+	  else if(round_num == 3)
+	  {
+	   	  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
+	   	  {
+	   		  ST7789V_SEND_DATA(COLOR_WHITE);
+	   	  }
+	   	  round_num = 0;
+	  }
+
+/*
+	  ST7789V_fill(0xFFFE);
 	  HAL_Delay(1000);
 	  ST7789V_fill(COLOR_BLUE);
 	  HAL_Delay(1000);
@@ -416,7 +456,7 @@ int main(void)
 	  HAL_Delay(1000);;
 	  ST7789V_fill(COLOR_RED);
 	  HAL_Delay(1000);
-
+*/
 /*	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, 1);
 	  HAL_Delay(500);
 	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, 0);
@@ -717,10 +757,10 @@ static void MX_FMC_Init(void)
   hsram1.Init.PageSize = FMC_PAGE_SIZE_NONE;
   hsram1.Init.MaxChipSelectPulse = DISABLE;
   /* Timing */
-  Timing.AddressSetupTime = 15;
+  Timing.AddressSetupTime = 7;
   Timing.AddressHoldTime = 15;
-  Timing.DataSetupTime = 255;
-  Timing.DataHoldTime = 2;
+  Timing.DataSetupTime = 3;
+  Timing.DataHoldTime = 3;
   Timing.BusTurnAroundDuration = 15;
   Timing.CLKDivision = 16;
   Timing.DataLatency = 17;
