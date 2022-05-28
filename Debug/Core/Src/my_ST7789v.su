@@ -1,3 +1,7 @@
+../Core/Inc/my_ST7789V.h:30:13:void ST7789V_SEND_COMMAND(uint16_t)	16	static
+../Core/Inc/my_ST7789V.h:35:13:void ST7789V_SEND_DATA(uint16_t)	16	static
+../Core/Inc/my_ST7789V.h:39:17:uint16_t ST7789V_READ_DATA()	16	static
+../Core/Inc/my_ST7789V.h:46:13:void ST7789V_SEND_DATA_BUFFERED(uint16_t*, size_t)	24	static
 ../Core/Src/my_ST7789v.cpp:25:13:void ST7789V_writeRegister16(uint8_t, uint16_t)	16	static
 ../Core/Src/my_ST7789v.cpp:31:13:void ST7789V_writeRegister32(uint8_t, uint32_t)	16	static
 ../Core/Src/my_ST7789v.cpp:39:6:void ST7789V_setCursorPosition(uint16_t, uint16_t, uint16_t, uint16_t)	32	static

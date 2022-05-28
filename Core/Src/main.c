@@ -407,14 +407,8 @@ int main(void)
 	  HAL_Delay(500);
 	  HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, 0);
 
-	  ST7789V_SEND_DATA(0xF800);
-	  HAL_Delay(1000);
-	  ST7789V_SEND_DATA(0x07E0);
-	  HAL_Delay(1000);
-	  ST7789V_SEND_DATA(0x1F);
-	  HAL_Delay(1000);
 
-/*	  ST7789V_fill(0xFF);
+	  ST7789V_fill(0xFF);
 	  HAL_Delay(1000);
 	  ST7789V_fill(COLOR_BLUE);
 	  HAL_Delay(1000);
@@ -422,7 +416,7 @@ int main(void)
 	  HAL_Delay(1000);;
 	  ST7789V_fill(COLOR_RED);
 	  HAL_Delay(1000);
-*/
+
 /*	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, 1);
 	  HAL_Delay(500);
 	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, 0);
@@ -726,7 +720,7 @@ static void MX_FMC_Init(void)
   Timing.AddressSetupTime = 15;
   Timing.AddressHoldTime = 15;
   Timing.DataSetupTime = 255;
-  Timing.DataHoldTime = 0;
+  Timing.DataHoldTime = 2;
   Timing.BusTurnAroundDuration = 15;
   Timing.CLKDivision = 16;
   Timing.DataLatency = 17;

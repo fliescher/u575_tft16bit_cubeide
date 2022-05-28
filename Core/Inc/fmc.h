@@ -14,13 +14,17 @@ extern "C" {
 
 //#include "stm32f7xx_hal.h"//_sram.h"
 #include "stm32u5xx_hal.h" //_sram.h"
-
+/*
 //#define MEM_SWAPPING 1
 #if MEM_SWAPPING
 #define NORSRAM_BASE_ADDRESS 0xC0000000
 #else
 #define NORSRAM_BASE_ADDRESS 0x60000000
 #endif
+*/
+//FSMC Write addresses (16bits)
+#define ST7789_REG			*(__IO uint16_t *)(((uint32_t)0x60000000))
+#define ST7789_RAM			*(__IO uint16_t *)(((uint32_t)0x60000000) + (1 << (18+1))) //A18
 
 #define MIN_ADDSET_TIME  0
 #define MAX_ADDSET_TIME  15
