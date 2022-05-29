@@ -15,23 +15,46 @@
  *
 */
 
+#include <ST7789V.h>
 #include "main.h"
-#include "my_ST7789V.h"
+#include <stdlib.h>
 #include <algorithm>
 
 static uint8_t rotationNum=1;
 static bool _cp437    = false;
 
+void ST7789V_SEND_COMMAND(uint16_t cmd)
+{
+    ST7789_REG = cmd;
+
+}
+void ST7789V_SEND_DATA(uint16_t data)
+{
+    ST7789_RAM = data;
+}
+uint16_t ST7789V_READ_DATA(void)
+{
+	uint16_t ram;
+    ram = ST7789_RAM;
+    return ram;
+}
+
+void ST7789V_SEND_DATA_BUFFERED(uint16_t *buff, size_t buff_size) {
+	for (uint16_t i = 0; i < buff_size; i++){
+		ST7789V_SEND_DATA(buff[i]);
+	}
+}
+
 void ST7789V_writeRegister16(uint8_t r, uint16_t d) {
 	ST7789V_SEND_COMMAND(r);
-	ST7789V_SEND_DATA(d >> 8);
+	ST7789V_SEND_DATA((d >> 8));
 	ST7789V_SEND_DATA(d);
 }
 
 void ST7789V_writeRegister32(uint8_t r, uint32_t d) {
 	ST7789V_SEND_COMMAND(r);
-	ST7789V_SEND_DATA(d >> 24);
-	ST7789V_SEND_DATA(d >> 16);
+	ST7789V_SEND_DATA((d >> 24));
+	ST7789V_SEND_DATA((d >> 16));
 	ST7789V_SEND_DATA((d >> 8));
 	ST7789V_SEND_DATA(d);
 }
@@ -39,8 +62,10 @@ void ST7789V_writeRegister32(uint8_t r, uint32_t d) {
 void ST7789V_setCursorPosition(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1) {
   uint32_t t;
   t = (x0 << 16) | x1;
+  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
   ST7789V_writeRegister32(ST7789V_CASET, t);
   t = (y0 << 16) | y1;
+  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
   ST7789V_writeRegister32(ST7789V_RASET, t);
   ST7789V_SEND_COMMAND (ST7789V_RAMWR);
 }
@@ -182,8 +207,6 @@ void ST7789V_init(void)
 
 void ST7789V_drawPixel(uint16_t x, uint16_t y, uint16_t color) {
 	ST7789V_setCursorPosition(x, y, x, y);
-	//ST7789V_SEND_DATA(color>>8);
-	//ST7789V_SEND_DATA(color&0xFF);
 	ST7789V_SEND_DATA(color);
 }
 
@@ -201,8 +224,6 @@ void ST7789V_fill(uint16_t color) {
 
 	while (n) {
 	   n--;
-       //ST7789V_SEND_DATA(color>>8);
-	   //ST7789V_SEND_DATA(color&0xff);
 	   ST7789V_SEND_DATA(color);
 	}
 }
@@ -214,8 +235,6 @@ void ST7789V_fillRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16
 	ST7789V_setCursorPosition(x0, y0, x1, y1);
 	while (n) {
 			n--;
-			//ST7789V_SEND_DATA(color>>8);
-			//ST7789V_SEND_DATA(color&0xff);
 			ST7789V_SEND_DATA(color);
 	}
 }

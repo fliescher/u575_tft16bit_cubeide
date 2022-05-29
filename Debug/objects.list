@@ -1,6 +1,6 @@
+"./Core/Src/ST7789v.o"
 "./Core/Src/fmc.o"
 "./Core/Src/main.o"
-"./Core/Src/my_ST7789v.o"
 "./Core/Src/stm32u5xx_hal_msp.o"
 "./Core/Src/stm32u5xx_it.o"
 "./Core/Src/syscalls.o"

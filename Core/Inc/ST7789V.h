@@ -24,30 +24,11 @@ extern "C" {
 
 #define ST7789V_SRAM_BANK   1
 #define ST7789V_Ax          18
-//#define ST7789V_SEND_COMMAND(command)   FMC_LCD_8BIT_SEND_COMMAND(ST7789V_SRAM_BANK, command)              //maybe this needs to be changed to 8bit as ST7789V always reads commands on [D0:D7]
-//#define ST7789V_SEND_DATA(data)         FMC_LCD_16BIT_SEND_DATA(ST7789V_SRAM_BANK, ST7789V_Ax, data)
 
-static void ST7789V_SEND_COMMAND(uint16_t cmd)
-{
-    ST7789_REG = cmd;
-
-}
-static void ST7789V_SEND_DATA(uint16_t data)
-{
-    ST7789_RAM = data;
-}
-static uint16_t ST7789V_READ_DATA(void)
-{
-	uint16_t ram;
-    ram = ST7789_RAM;
-    return ram;
-}
-
-static void ST7789V_SEND_DATA_BUFFERED(uint16_t *buff, size_t buff_size) {
-	for (uint16_t i = 0; i < buff_size; i++){
-		ST7789V_SEND_DATA(buff[i]);
-	}
-}
+void ST7789V_SEND_COMMAND(uint16_t cmd);
+void ST7789V_SEND_DATA(uint16_t data);
+uint16_t ST7789V_READ_DATA(void);
+void ST7789V_SEND_DATA_BUFFERED(uint16_t *buff, size_t buff_size);
 
   /** FMC GPIO Configuration
   PD14  ------> FMC_D0
@@ -512,8 +493,8 @@ void ST7789V_fillRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16
 
 void ST7789V_drawCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
 void drawCircleHelper(uint16_t x0, uint16_t y0, uint16_t r, uint8_t cornername, uint16_t color);
-void fillCircleHelper(uint16_t x0, uint16_t y0, uint16_t r, uint8_t cornername, uint16_t delta, uint16_t color);
-void ST7789V_fillCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
+void fillCircleHelper(uint16_t x0, uint16_t y0, uint16_t r, uint8_t cornername, uint16_t delta, uint16_t color);					///////////////////////////// error
+void ST7789V_fillCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);														///////////////////////////// error
 
 void ST7789V_drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 void ST7789V_drawFastHLine(uint16_t x, uint16_t y, uint16_t w, uint16_t color);
@@ -521,11 +502,11 @@ void ST7789V_drawFastVLine(uint16_t x, uint16_t y, uint16_t h, uint16_t color);
 
 void ST7789V_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 
-void ST7789V_drawTriangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);
-void ST7789V_fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color);
+void ST7789V_drawTriangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color);			///////////////////////////// error
+void ST7789V_fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color);					///////////////////////////// error
 
-void ST7789V_drawChar(uint16_t x, uint16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
-void ST7789V_printText(unsigned char text[], uint16_t x, uint16_t y, uint16_t color, uint16_t bg, uint8_t size);
+void ST7789V_drawChar(uint16_t x, uint16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);							///////////////////////////// error
+void ST7789V_printText(unsigned char text[], uint16_t x, uint16_t y, uint16_t color, uint16_t bg, uint8_t size);					///////////////////////////// error
 
 void ST7789V_printImage(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint8_t *data, uint32_t size);
 

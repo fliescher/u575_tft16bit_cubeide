@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "my_image.h"
+//#include "my_image.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,7 +48,6 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 SRAM_HandleTypeDef hsram1;
 
 /* USER CODE BEGIN PV */
-
 
 /* USER CODE END PV */
 
@@ -129,12 +128,50 @@ int main(void)
 
 
 	  if(round_num == 0)
-	  {
+	  {/*
+		  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
+
+		  ST7789V_SEND_COMMAND(ST7789V_CASET);
+		  ST7789V_SEND_DATA(0x00);
+		  ST7789V_SEND_DATA(0x00);
+		  ST7789V_SEND_DATA(0x00);
+		  ST7789V_SEND_DATA(0xF0);
+
+		  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
+
+		  ST7789V_SEND_COMMAND(ST7789V_RASET);
+		  ST7789V_SEND_DATA(0x00);
+		  ST7789V_SEND_DATA(0x14);
+		  ST7789V_SEND_DATA(0x01);
+		  ST7789V_SEND_DATA(0x40);
+
+		  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
+
 		  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
 		  {
 			  ST7789V_SEND_DATA(COLOR_RED);
-		  }
+		  }*/
+		  ST7789V_fill(COLOR_RED);
 		  round_num++;
+	  }
+	  else
+	  {
+		  //ST7789V_fillCircle(100, 100, 50, COLOR_BLACK);
+		  ST7789V_drawCircle(100, 100, 50, COLOR_WHITE);
+		  ST7789V_drawFastVLine(150, 80, 100, COLOR_WHITE);
+//		  ST7789V_drawLine(10, 10, 100, 10, COLOR_BLACK);
+//		  ST7789V_drawLine(10, 10, 50, 100, COLOR_WHITE);
+//		  ST7789V_drawLine(50, 100, 100, 10, COLOR_GREEN);
+		  //ST7789V_drawTriangle(10, 10, 100, 10, 50, 200, COLOR_BLACK);
+		  //ST7789V_fillRect(100, 100, 200, 300, COLOR_BLACK);
+/*		  for(int i = 0; i < 100; i++)
+		  {
+			  for(int j = 0; j<200; j++)
+			  {
+				  ST7789V_drawPixel(i, j, COLOR_WHITE);
+			  }
+		  }
+*/		  round_num = 0;
 	  }
 /*
 	  else if(round_num == 1)
@@ -162,8 +199,9 @@ int main(void)
 	   		  ST7789V_SEND_DATA(COLOR_WHITE);
 	   	  }
 	   	  round_num++;
+	   	  round_num = 0;
 	  }
-*/
+/*
 	  else if(round_num == 1)
 	  {
 	  	  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
