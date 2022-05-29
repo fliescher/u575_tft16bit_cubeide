@@ -2,28 +2,28 @@
 ../Core/Inc/my_ST7789V.h:35:13:void ST7789V_SEND_DATA(uint16_t)	16	static
 ../Core/Inc/my_ST7789V.h:39:17:uint16_t ST7789V_READ_DATA()	16	static
 ../Core/Inc/my_ST7789V.h:46:13:void ST7789V_SEND_DATA_BUFFERED(uint16_t*, size_t)	24	static
-../Core/Src/my_ST7789v.cpp:25:13:void ST7789V_writeRegister16(uint8_t, uint16_t)	16	static
-../Core/Src/my_ST7789v.cpp:31:13:void ST7789V_writeRegister32(uint8_t, uint32_t)	16	static
+../Core/Src/my_ST7789v.cpp:25:6:void ST7789V_writeRegister16(uint8_t, uint16_t)	16	static
+../Core/Src/my_ST7789v.cpp:31:6:void ST7789V_writeRegister32(uint8_t, uint32_t)	16	static
 ../Core/Src/my_ST7789v.cpp:39:6:void ST7789V_setCursorPosition(uint16_t, uint16_t, uint16_t, uint16_t)	32	static
 ../Core/Src/my_ST7789v.cpp:49:6:void ST7789V_invertRows(uint16_t, uint16_t)	24	static
 ../Core/Src/my_ST7789v.cpp:60:6:void ST7789V_init()	16	static
-../Core/Src/my_ST7789v.cpp:182:6:void ST7789V_drawPixel(uint16_t, uint16_t, uint16_t)	16	static
-../Core/Src/my_ST7789v.cpp:188:6:void ST7789V_fill(uint16_t)	24	static
-../Core/Src/my_ST7789v.cpp:209:6:void ST7789V_fillRect(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	32	static
-../Core/Src/my_ST7789v.cpp:220:6:void ST7789V_drawCircle(uint16_t, uint16_t, uint16_t, uint16_t)	40	static
-../Core/Src/my_ST7789v.cpp:254:13:void drawCircleHelper(uint16_t, uint16_t, uint16_t, uint8_t, uint16_t)	40	static
-../Core/Src/my_ST7789v.cpp:289:13:void fillCircleHelper(uint16_t, uint16_t, uint16_t, uint8_t, uint16_t, uint16_t)	40	static
-../Core/Src/my_ST7789v.cpp:318:6:void ST7789V_fillCircle(uint16_t, uint16_t, uint16_t, uint16_t)	32	static
-../Core/Src/my_ST7789v.cpp:324:6:void ST7789V_drawLine(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	40	static
-../Core/Src/my_ST7789v.cpp:364:6:void ST7789V_drawFastHLine(uint16_t, uint16_t, uint16_t, uint16_t)	32	static
-../Core/Src/my_ST7789v.cpp:369:6:void ST7789V_drawFastVLine(uint16_t, uint16_t, uint16_t, uint16_t)	32	static
-../Core/Src/my_ST7789v.cpp:374:6:void ST7789V_drawRect(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	24	static
-../Core/Src/my_ST7789v.cpp:381:6:void ST7789V_drawTriangle(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	32	static
-../Core/Src/my_ST7789v.cpp:389:6:void ST7789V_fillTriangle(int16_t, int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)	48	static
-../Core/Src/my_ST7789v.cpp:458:6:void ST7789V_drawChar(uint16_t, uint16_t, unsigned char, uint16_t, uint16_t, uint8_t)	40	static
-../Core/Src/my_ST7789v.cpp:493:6:void ST7789V_printText(unsigned char*, uint16_t, uint16_t, uint16_t, uint16_t, uint8_t)	48	static
-../Core/Src/my_ST7789v.cpp:503:6:void ST7789V_printImage(uint16_t, uint16_t, uint16_t, uint16_t, uint8_t*, uint32_t)	32	static
-../Core/Src/my_ST7789v.cpp:513:6:void ST7789V_setRotation(uint8_t)	16	static
+../Core/Src/my_ST7789v.cpp:183:6:void ST7789V_drawPixel(uint16_t, uint16_t, uint16_t)	16	static
+../Core/Src/my_ST7789v.cpp:190:6:void ST7789V_fill(uint16_t)	24	static
+../Core/Src/my_ST7789v.cpp:211:6:void ST7789V_fillRect(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	32	static
+../Core/Src/my_ST7789v.cpp:223:6:void ST7789V_drawCircle(uint16_t, uint16_t, uint16_t, uint16_t)	40	static
+../Core/Src/my_ST7789v.cpp:257:6:void drawCircleHelper(uint16_t, uint16_t, uint16_t, uint8_t, uint16_t)	40	static
+../Core/Src/my_ST7789v.cpp:292:6:void fillCircleHelper(uint16_t, uint16_t, uint16_t, uint8_t, uint16_t, uint16_t)	40	static
+../Core/Src/my_ST7789v.cpp:321:6:void ST7789V_fillCircle(uint16_t, uint16_t, uint16_t, uint16_t)	32	static
+../Core/Src/my_ST7789v.cpp:327:6:void ST7789V_drawLine(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	40	static
+../Core/Src/my_ST7789v.cpp:367:6:void ST7789V_drawFastHLine(uint16_t, uint16_t, uint16_t, uint16_t)	32	static
+../Core/Src/my_ST7789v.cpp:372:6:void ST7789V_drawFastVLine(uint16_t, uint16_t, uint16_t, uint16_t)	32	static
+../Core/Src/my_ST7789v.cpp:377:6:void ST7789V_drawRect(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	24	static
+../Core/Src/my_ST7789v.cpp:384:6:void ST7789V_drawTriangle(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t)	32	static
+../Core/Src/my_ST7789v.cpp:392:6:void ST7789V_fillTriangle(int16_t, int16_t, int16_t, int16_t, int16_t, int16_t, uint16_t)	48	static
+../Core/Src/my_ST7789v.cpp:461:6:void ST7789V_drawChar(uint16_t, uint16_t, unsigned char, uint16_t, uint16_t, uint8_t)	40	static
+../Core/Src/my_ST7789v.cpp:496:6:void ST7789V_printText(unsigned char*, uint16_t, uint16_t, uint16_t, uint16_t, uint8_t)	48	static
+../Core/Src/my_ST7789v.cpp:506:6:void ST7789V_printImage(uint16_t, uint16_t, uint16_t, uint16_t, uint8_t*, uint32_t)	32	static
+../Core/Src/my_ST7789v.cpp:516:6:void ST7789V_setRotation(uint8_t)	16	static
 c:\st\stm32cubeide_1.9.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\tools\arm-none-eabi\include\c++\10.3.1\bits\move.h:101:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = short unsigned int&]	16	static
 c:\st\stm32cubeide_1.9.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\tools\arm-none-eabi\include\c++\10.3.1\bits\move.h:189:5:std::_Require<std::__not_<std::__is_tuple_like<_Tp> >, std::is_move_constructible<_Tp>, std::is_move_assignable<_Tp> > std::swap(_Tp&, _Tp&) [with _Tp = short unsigned int]	24	static
 c:\st\stm32cubeide_1.9.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\tools\arm-none-eabi\include\c++\10.3.1\bits\move.h:101:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = short int&]	16	static

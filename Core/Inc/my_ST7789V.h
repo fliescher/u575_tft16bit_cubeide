@@ -494,8 +494,8 @@ const unsigned char font1[] = {
 //2. Write data to LCD
 //void ST7789V_SendData(uint8_t data);
 
-static void ST7789V_writeRegister16(uint8_t r, uint16_t d);
-static void ST7789V_writeRegister32(uint8_t r, uint32_t d);
+void ST7789V_writeRegister16(uint8_t r, uint16_t d);
+void ST7789V_writeRegister32(uint8_t r, uint32_t d);
 
 void ST7789V_setCursorPosition(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1);
 
@@ -511,8 +511,8 @@ void ST7789V_fill(uint16_t color);
 void ST7789V_fillRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 
 void ST7789V_drawCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
-static void drawCircleHelper(uint16_t x0, uint16_t y0, uint16_t r, uint8_t cornername, uint16_t color);
-static void fillCircleHelper(uint16_t x0, uint16_t y0, uint16_t r, uint8_t cornername, uint16_t delta, uint16_t color);
+void drawCircleHelper(uint16_t x0, uint16_t y0, uint16_t r, uint8_t cornername, uint16_t color);
+void fillCircleHelper(uint16_t x0, uint16_t y0, uint16_t r, uint8_t cornername, uint16_t delta, uint16_t color);
 void ST7789V_fillCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
 
 void ST7789V_drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);

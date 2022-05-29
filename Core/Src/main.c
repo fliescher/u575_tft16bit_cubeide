@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "my_image.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,6 +48,7 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 SRAM_HandleTypeDef hsram1;
 
 /* USER CODE BEGIN PV */
+
 
 /* USER CODE END PV */
 
@@ -107,298 +108,14 @@ int main(void)
   MX_FMC_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-  HAL_Delay(200);
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-  HAL_Delay(200);
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-  HAL_Delay(200);
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-/////////////////////////////////////////////////////////////////////////////////////////
-  ///Initialization start///
-/////////////////////////////////////////////////////////////////////////////////////////
-   ExternalSRAMSpecStruct ST7789VSpec = {
-/*
-           .dataSize = 8,
-		   .tACC = 40,
-		   .tAS = 0,
-		   .tWRLW = 15,
-		   .tCycRead = 160,
-		   .tCycWrite = 66,
-		   .writeOnly = 1
-*/
-           .dataSize = 16,
-		   .tACC = 50,
-		   .tAS = 0,
-		   //.tWRLW = 15,
-		   //.tCycRead = 160,
-		   //.tCycWrite = 66,
-		   .writeOnly = 1
-
-   };
-
-   FMCSRAMInit(&ST7789VSpec, ST7789V_SRAM_BANK);
-
-   HAL_GPIO_WritePin(FMC_RESET_GPIO_Port, FMC_RESET_Pin, GPIO_PIN_SET);
-   HAL_Delay(1);
-   HAL_GPIO_WritePin(FMC_RESET_GPIO_Port, FMC_RESET_Pin, GPIO_PIN_RESET);
-   HAL_Delay(10);
-   HAL_GPIO_WritePin(FMC_RESET_GPIO_Port, FMC_RESET_Pin, GPIO_PIN_SET);
-   HAL_Delay(120);
-
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-
-   ST7789V_SEND_COMMAND(ST7789V_SLPOUT);
-   HAL_Delay(120);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-
-
-   ST7789V_SEND_COMMAND(ST7789V_MADCTL); //Memory data acccess control
-   ST7789V_SEND_DATA(0x00);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_PORCTRL); //Porch Setting
-   ST7789V_SEND_DATA(0x0C);
-   ST7789V_SEND_DATA(0x0C);
-   ST7789V_SEND_DATA(0x00);
-   ST7789V_SEND_DATA(0x33);
-   ST7789V_SEND_DATA(0x33);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_GCTRL); //Gate Control
-   ST7789V_SEND_DATA(0x70); //VGH, VGL
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_VCOMS);
-   ST7789V_SEND_DATA(0x3A);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_LCMCTRL);
-   ST7789V_SEND_DATA(0x2C);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_VDVVRHEN);
-   ST7789V_SEND_DATA(0x01);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_VRHS);
-   ST7789V_SEND_DATA(0x14);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_VDVS);
-   ST7789V_SEND_DATA(0x20);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_FRCTRL2);
-   ST7789V_SEND_DATA(0x0F); //60Hz 0A
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_PWCTRL1);
-   ST7789V_SEND_DATA(0xA4);
-   ST7789V_SEND_DATA(0xA1); //AVDD VCL
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_PVGAMCTRL);
-   ST7789V_SEND_DATA(0xD0);
-   ST7789V_SEND_DATA(0x07);
-   ST7789V_SEND_DATA(0x0D);
-   ST7789V_SEND_DATA(0x09);
-   ST7789V_SEND_DATA(0x08);
-   ST7789V_SEND_DATA(0x25);
-   ST7789V_SEND_DATA(0x28);
-   ST7789V_SEND_DATA(0x53);
-   ST7789V_SEND_DATA(0x39);
-   ST7789V_SEND_DATA(0x12);
-   ST7789V_SEND_DATA(0x0B);
-   ST7789V_SEND_DATA(0x0A);
-   ST7789V_SEND_DATA(0x17);
-   ST7789V_SEND_DATA(0x34);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_NVGAMCTRL);
-   ST7789V_SEND_DATA(0xD0);
-   ST7789V_SEND_DATA(0x07);
-   ST7789V_SEND_DATA(0x0D);
-   ST7789V_SEND_DATA(0x09);
-   ST7789V_SEND_DATA(0x09);
-   ST7789V_SEND_DATA(0x25);
-   ST7789V_SEND_DATA(0x29);
-   ST7789V_SEND_DATA(0x35);
-   ST7789V_SEND_DATA(0x39);
-   ST7789V_SEND_DATA(0x13);
-   ST7789V_SEND_DATA(0x0A);
-   ST7789V_SEND_DATA(0x0A);
-   ST7789V_SEND_DATA(0x16);
-   ST7789V_SEND_DATA(0x34);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_INVON);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_COLMOD);
-   ST7789V_SEND_DATA(0x55); //65K colors, 16 bit/px
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_CASET);
-   ST7789V_SEND_DATA(0x00);
-   ST7789V_SEND_DATA(0x00);
-   ST7789V_SEND_DATA(0x00);
-   ST7789V_SEND_DATA(0xEF);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_RASET);
-   ST7789V_SEND_DATA(0x00);
-   ST7789V_SEND_DATA(0x00);
-   ST7789V_SEND_DATA(0x01);
-   ST7789V_SEND_DATA(0x3F);
-
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-   HAL_Delay(200);
-   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-   ST7789V_SEND_COMMAND(ST7789V_DISPON);
-   ST7789V_SEND_COMMAND(ST7789V_RAMWR);
-
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-  HAL_Delay(1000);
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-  HAL_Delay(1000);
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
-  HAL_Delay(1000);
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);
-
-////////////////////////////////////////////////////////////////////////////////////////
+  ST7789V_init();
+  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int round_num = 0;
+
   while (1)
   {
     /* USER CODE END WHILE */
@@ -408,8 +125,8 @@ int main(void)
 	  HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, 1);
 	  HAL_Delay(500);
 	  HAL_GPIO_WritePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin, 0);
+	  HAL_Delay(3000);
 
-	  ST7789V_SEND_COMMAND(ST7789V_RAMWR);
 
 	  if(round_num == 0)
 	  {
@@ -419,7 +136,7 @@ int main(void)
 		  }
 		  round_num++;
 	  }
-
+/*
 	  else if(round_num == 1)
 	  {
 	  	  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
@@ -444,31 +161,43 @@ int main(void)
 	   	  {
 	   		  ST7789V_SEND_DATA(COLOR_WHITE);
 	   	  }
+	   	  round_num++;
+	  }
+*/
+	  else if(round_num == 1)
+	  {
+	  	  for(int i = 0; i<ST7789V_PIXEL_COUNT; i++)
+	   	  {
+	   		  ST7789V_SEND_DATA(kuhmuh[i]);
+	   	  }
+	  	  HAL_Delay(3000);
 	   	  round_num = 0;
 	  }
 
-/*
-	  ST7789V_fill(0xFFFE);
-	  HAL_Delay(1000);
-	  ST7789V_fill(COLOR_BLUE);
-	  HAL_Delay(1000);
-	  ST7789V_fill(COLOR_GREEN);
-	  HAL_Delay(1000);;
-	  ST7789V_fill(COLOR_RED);
-	  HAL_Delay(1000);
-*/
-/*	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, 1);
-	  HAL_Delay(500);
-	  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, 0);
+/*	  for(int i = 0; i<ST7789V_PIXEL_COUNT/5; i++)
+	  	   	  {
+	  	   		  ST7789V_SEND_DATA(COLOR_BLACK);
+	  	   	  }
 
+	  for(int i = (ST7789V_PIXEL_COUNT/5)+1; i<(2*ST7789V_PIXEL_COUNT/5); i++)
+	  	   	  {
+	  	   		  ST7789V_SEND_DATA(COLOR_WHITE);
+	  	   	  }
+	  for(int i = (2*ST7789V_PIXEL_COUNT/5)+1; i<(3*ST7789V_PIXEL_COUNT/5); i++)
+	  	  	  {
+	 	   		  ST7789V_SEND_DATA(COLOR_RED);
+	  	  	   }
 
-	  ST7789V_drawCircle(80, 100, 20, COLOR_WHITE);
-	  //HAL_Delay(1000);
-	  ST7789V_fillCircle(80, 100, 15, COLOR_BLACK);
-	  //HAL_Delay(3000);
-	  ST7789V_fill(COLOR_WHITE);
-	  //HAL_Delay(10000);
-*/
+	  for(int i = (3*ST7789V_PIXEL_COUNT/5)+1; i<(4*ST7789V_PIXEL_COUNT/5); i++)
+	  	   	  {
+	  	  		 ST7789V_SEND_DATA(COLOR_GREEN);
+	  	   	  }
+	  for(int i = (4*ST7789V_PIXEL_COUNT/5)+1; i<ST7789V_PIXEL_COUNT; i++)
+	  	  	  {
+	  	  		 ST7789V_SEND_DATA(COLOR_BLUE);
+	  	  	  }
+	  	  	  */
+
 	  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
 	  HAL_Delay(500);
 	  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 0);

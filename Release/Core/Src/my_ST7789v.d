@@ -1,4 +1,4 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/my_ST7789v.o: ../Core/Src/my_ST7789v.cpp ../Core/Inc/main.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal.h \
  ../Core/Inc/stm32u5xx_hal_conf.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal_rcc.h \
@@ -43,7 +43,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_gpio.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_dma.h \
  ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_exti.h \
- ../Core/Inc/fmc.h ../Core/Inc/my_ST7789V.h ../Core/Inc/my_image.h
+ ../Core/Inc/fmc.h ../Core/Inc/my_ST7789V.h ../Core/Inc/my_ST7789V.h
 ../Core/Inc/main.h:
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_hal.h:
 ../Core/Inc/stm32u5xx_hal_conf.h:
@@ -91,4 +91,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32U5xx_HAL_Driver/Inc/stm32u5xx_ll_exti.h:
 ../Core/Inc/fmc.h:
 ../Core/Inc/my_ST7789V.h:
-../Core/Inc/my_image.h:
+../Core/Inc/my_ST7789V.h:
