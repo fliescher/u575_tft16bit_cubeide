@@ -9,9 +9,24 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include TouchGFX/target/generated/subdir.mk
+-include TouchGFX/target/subdir.mk
+-include TouchGFX/gui/src/screen1_screen/subdir.mk
+-include TouchGFX/gui/src/model/subdir.mk
+-include TouchGFX/gui/src/common/subdir.mk
+-include TouchGFX/generated/texts/src/subdir.mk
+-include TouchGFX/generated/images/src/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen1_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/common/subdir.mk
+-include TouchGFX/generated/fonts/src/subdir.mk
+-include TouchGFX/App/subdir.mk
+-include Middlewares/ST/threadx/ports/cortex_m33/gnu/src/subdir.mk
+-include Middlewares/ST/threadx/common/src/subdir.mk
 -include Drivers/STM32U5xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
+-include Core/Inc/subdir.mk
+-include AZURE_RTOS/App/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

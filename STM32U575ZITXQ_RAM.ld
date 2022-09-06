@@ -142,6 +142,15 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
+/* Needed for TouchGFX -> see AZURE_RTOS/APP/app_azore_rtos.c */
+._threadx_heap :
+       {
+          . = ALIGN(8);
+          __RAM_segment_used_end__ = .;
+          . = . + 64K;
+          . = ALIGN(8);
+        } >RAM_D1 AT> RAM_D1
+        
   /* User_heap_stack section, used to check that there is enough "RAM" Ram type memory left */
   ._user_heap_stack :
   {
@@ -163,3 +172,5 @@ SECTIONS
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
 }
+
+

@@ -18,6 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "app_threadx.h"
+#include "app_touchgfx.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -39,7 +41,9 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
- ADC_HandleTypeDef hadc1;
+ADC_HandleTypeDef hadc1;
+
+CRC_HandleTypeDef hcrc;
 
 UART_HandleTypeDef huart1;
 
@@ -60,6 +64,8 @@ static void MX_UCPD1_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_USB_OTG_FS_PCD_Init(void);
 static void MX_FMC_Init(void);
+static void MX_CRC_Init(void);
+static void MX_ICACHE_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -105,12 +111,19 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USB_OTG_FS_PCD_Init();
   MX_FMC_Init();
+  MX_CRC_Init();
+  MX_ICACHE_Init();
+  /* Call PreOsInit function */
+  MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
 
   ST7789V_init();
   ST7789V_SEND_COMMAND(ST7789V_RAMWR);
   /* USER CODE END 2 */
 
+  MX_ThreadX_Init();
+
+  /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int round_num = 0;
@@ -260,7 +273,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 
-  /** Initializes the CPU, AHB and APB busses clocks
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSI
                               |RCC_OSCILLATORTYPE_MSI;
@@ -285,7 +298,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 
-  /** Initializes the CPU, AHB and APB busses clocks
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
@@ -360,6 +373,87 @@ static void MX_ADC1_Init(void)
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
+
+}
+
+/**
+  * @brief CRC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CRC_Init(void)
+{
+
+  /* USER CODE BEGIN CRC_Init 0 */
+
+  /* USER CODE END CRC_Init 0 */
+
+  /* USER CODE BEGIN CRC_Init 1 */
+
+  /* USER CODE END CRC_Init 1 */
+  hcrc.Instance = CRC;
+  hcrc.Init.DefaultPolynomialUse = DEFAULT_POLYNOMIAL_ENABLE;
+  hcrc.Init.DefaultInitValueUse = DEFAULT_INIT_VALUE_ENABLE;
+  hcrc.Init.InputDataInversionMode = CRC_INPUTDATA_INVERSION_NONE;
+  hcrc.Init.OutputDataInversionMode = CRC_OUTPUTDATA_INVERSION_DISABLE;
+  hcrc.InputDataFormat = CRC_INPUTDATA_FORMAT_BYTES;
+  if (HAL_CRC_Init(&hcrc) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CRC_Init 2 */
+
+  /* USER CODE END CRC_Init 2 */
+
+}
+
+/**
+  * @brief ICACHE Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ICACHE_Init(void)
+{
+
+  /* USER CODE BEGIN ICACHE_Init 0 */
+
+  /* USER CODE END ICACHE_Init 0 */
+
+  ICACHE_RegionConfigTypeDef pRegionConfig = {0};
+
+  /* USER CODE BEGIN ICACHE_Init 1 */
+
+  /* USER CODE END ICACHE_Init 1 */
+
+  /** Configure and enable a region for memory remapping.
+  */
+  if (HAL_ICACHE_Disable() != HAL_OK)
+  {
+    Error_Handler();
+  }
+  pRegionConfig.BaseAddress = 0x0;
+  pRegionConfig.RemapAddress = 0x0;
+  pRegionConfig.Size = ICACHE_REGIONSIZE_2MB;
+  pRegionConfig.TrafficRoute = ICACHE_MASTER1_PORT;
+  pRegionConfig.OutputBurstType = ICACHE_OUTPUT_BURST_WRAP;
+  if (HAL_ICACHE_EnableRemapRegion(ICACHE_REGION_0, &pRegionConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Enable instruction cache in 1-way (direct mapped cache)
+  */
+  if (HAL_ICACHE_ConfigAssociativityMode(ICACHE_1WAY) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_ICACHE_Enable() != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ICACHE_Init 2 */
+
+  /* USER CODE END ICACHE_Init 2 */
 
 }
 
@@ -625,6 +719,27 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM2 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM2) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

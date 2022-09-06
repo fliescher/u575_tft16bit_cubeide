@@ -1,0 +1,27 @@
+
+{
+  "Application": {
+    "Name": "u575_tft16bit_cubeide",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "AvailableColorDepths": [ 16 ],
+    "AvailableLCDs":
+    {
+      "16": "LCD16bpp"
+    },
+    "AvailableResolutions": [
+      {
+        "Width": 240,
+        "Height": 320
+      }
+    ],
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "Family": "STM32U5",
+    "SubFamily": "STM32U575/585",
+    "Platform": "m33",
+    "ProjectFile": "../u575_tft16bit_cubeide.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [
+    ]
+  },
+  "Version": "4.20.0"
+}

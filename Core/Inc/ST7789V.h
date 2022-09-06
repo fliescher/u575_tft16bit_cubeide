@@ -479,6 +479,9 @@ void ST7789V_writeRegister16(uint8_t r, uint16_t d);
 void ST7789V_writeRegister32(uint8_t r, uint32_t d);
 
 void ST7789V_setCursorPosition(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1);
+void ST7789V_SetDisplayWindow(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height);
+
+void LCD_IO_WriteMultipleData(uint16_t* pData, uint32_t Size);
 
 /* inverts colors of given rows of screen */
 void ST7789V_invertRows(uint16_t y0, uint16_t y1);

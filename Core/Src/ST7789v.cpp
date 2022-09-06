@@ -70,6 +70,44 @@ void ST7789V_setCursorPosition(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y
   ST7789V_SEND_COMMAND (ST7789V_RAMWR);
 }
 
+void ST7789V_SetDisplayWindow(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height)
+{
+	uint8_t parameter[4];
+
+	/*CASET: Column Address Set */
+	parameter[0] = 0x00;
+	parameter[1] = Xpos;
+	parameter[2] = 0x00;
+	parameter[3] = Xpos + Width -1;
+	ST7789V_SEND_COMMAND(ST7789V_CASET);
+	ST7789V_SEND_DATA(parameter[0]);
+	ST7789V_SEND_DATA(parameter[1]);
+	ST7789V_SEND_DATA(parameter[2]);
+	ST7789V_SEND_DATA(parameter[3]);
+
+	/* RASET: Row Address Set */
+	parameter[0] = 0x00;
+	parameter[1] = Ypos;
+	parameter[2] = 0x00;
+	parameter[3] = Ypos + Height -1;
+	ST7789V_SEND_COMMAND(ST7789V_RASET);
+	ST7789V_SEND_DATA(parameter[0]);
+	ST7789V_SEND_DATA(parameter[1]);
+	ST7789V_SEND_DATA(parameter[2]);
+	ST7789V_SEND_DATA(parameter[3]);
+
+}
+
+void LCD_IO_WriteMultipleData(uint16_t* pData, uint32_t Size)
+{
+	uint32_t i = 0;
+	while(i<0)
+	{
+		ST7789V_SEND_DATA(pData[i]);
+		i++;
+	}
+}
+
 /* inverts colors of given rows of screen */
 void ST7789V_invertRows(uint16_t y0, uint16_t y1) {
 	/* define partial area */

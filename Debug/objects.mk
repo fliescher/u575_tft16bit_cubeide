@@ -5,5 +5,5 @@
 
 USER_OBJS :=
 
-LIBS :=
+LIBS := -l:libtouchgfx-float-abi-hard.a
 
