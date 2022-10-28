@@ -183,8 +183,8 @@ void ST7789V_SEND_DATA_BUFFERED(uint16_t *buff, size_t buff_size);
 #define COLOR_MAROON          0x7800 
 #define COLOR_PURPLE          0x780F
 #define COLOR_OLIVE           0x7BE0     
-#define COLOR_LGRAY           0xC618      
-#define COLOR_DGRAY           0x7BEF    
+#define COLOR_LGREY           0xC618      
+#define COLOR_DGREY           0x7BEF    
 #define COLOR_BLUE            0x001F    
 #define COLOR_BLUE2			  0x051D
 #define COLOR_GREEN           0x07E0      
