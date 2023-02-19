@@ -40,8 +40,19 @@ uint16_t ST7789V_READ_DATA(void)
 }
 
 void ST7789V_SEND_DATA_BUFFERED(uint16_t *buff, size_t buff_size) {
-	for (uint16_t i = 0; i < buff_size; i++){
-		ST7789V_SEND_DATA(buff[i]);
+	if(rotationNum==1 || rotationNum==3)
+	{
+		ST7789V_setCursorPosition(0, 0,   ST7789V_WIDTH -1, ST7789V_HEIGHT -1);
+	}
+	else if(rotationNum==2 || rotationNum==4)
+	{
+		ST7789V_setCursorPosition(0, 0, ST7789V_HEIGHT -1, ST7789V_WIDTH -1);
+	}
+	int n = buff_size;
+	while (n)
+	{
+		ST7789V_SEND_DATA(buff[buff_size-n]);
+		n--;
 	}
 }
 
